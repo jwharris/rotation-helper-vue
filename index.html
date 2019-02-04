@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Rotation Helper</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/bulma.min.css" />
+
+    <style>
+
+        .red {
+            background: red
+        }
+
+    </style>
+</head>
+
+<header class="red has-text-centered-mobile has-text-black">
+    Rotation Helper
+</header>
+
+<body>
+    <div id="app">
+        <h1 class="title has-text-centered">{{title}}</h1>
+        <section class="buttons">
+            <a v-for="category in categories" :id='category.id' class="button is-outlined is-fullwidth is-dark">
+                {{category.name}}
+            </a>
+        </section>
+
+    </div>
+</body>
+
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+
+<script type="module">
+    'use strict';
+
+    import db from '/js/objRepository.js';
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            title: 'Select a Rotation',
+            categories: db.categories
+        },
+        methods: {
+
+        }
+    });
+
+</script>

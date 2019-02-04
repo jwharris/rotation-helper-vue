@@ -1,0 +1,17 @@
+{
+  "name": "rotationhelper",
+  "version": "1.0.0",
+  "description": "Site that supplies the basic questions and information needed for a med students rotations",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lite": "lite-server --port 10001",
+    "start": "npm run lite"
+  },
+  "author": "Jonathan Harris & Matt Kelecy",
+  "license": "ISC",
+  "dependencies": {
+    "bulma": "^0.7.2",
+    "lite-server": "^2.4.0"
+  }
+}
