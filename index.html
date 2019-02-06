@@ -27,7 +27,7 @@
     <div id="app">
         <h1 class="title has-text-centered">{{title}}</h1>
         <section class="buttons">
-            <a v-for="category in categories" :id='category.id' class="button is-outlined is-fullwidth is-dark">
+            <a v-for="category in categories" :id='category.id' @click="doSomething" class="button is-outlined is-fullwidth is-dark">
                 {{category.name}}
             </a>
         </section>
@@ -48,10 +48,17 @@
         el: '#app',
         data: {
             title: 'Select a Rotation',
-            categories: db.categories
+            test: {},
+            categories: db.categories,
+            subCategories: db.subCategories
+        },
+        this: function () {
+            this.test = categories;
         },
         methods: {
-
+            doSomething: function doSomething(event) {
+                console.log(event.target.id);
+            }
         }
     });
 
