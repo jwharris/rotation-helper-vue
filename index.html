@@ -27,8 +27,8 @@
     <div id="app">
         <h1 class="title has-text-centered">{{title}}</h1>
         <section class="buttons">
-            <a v-for="category in categories" :id='category.id' @click="doSomething" class="button is-outlined is-fullwidth is-dark">
-                {{category.name}}
+            <a v-for="obj in test" :id='obj.id' @click="doSomething" class="button is-outlined is-fullwidth is-dark">
+                {{obj.name}}
             </a>
         </section>
 
@@ -49,15 +49,47 @@
         data: {
             title: 'Select a Rotation',
             test: {},
+            categoriesView: db.categoriesView,
+            subCatView: db.subCategoriesView,
             categories: db.categories,
-            subCategories: db.subCategories
+            relations: db.relations,
+            descriptions: db.descriptionsView,
+            count: 0
         },
-        this: function () {
-            this.test = categories;
+        created: function () {
+            this.test = this.categoriesView;
         },
         methods: {
             doSomething: function doSomething(event) {
+
+                this.count += 1;
+
+                const count = this.count;
+
                 console.log(event.target.id);
+
+                let sub = {};
+
+                console.log(sub);
+                // pretend routes
+                if(count == 1) {
+
+                    window.test = this.subCatView;
+
+                    console.log(this.subCatView);
+
+                    sub = this.subCatView.filter(function (obj) {
+                        return obj.catId == event.target.id;
+                    });
+                }
+                if(count == 2) {
+                    sub = this.descriptions.filter(function (obj) {
+                        return obj.relationId == event.target.id;
+                    });
+                }
+
+                this.test = sub;
+                
             }
         }
     });
