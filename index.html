@@ -16,6 +16,14 @@
             background: red
         }
 
+        .hasDescription p{
+            text-indent: 1em;
+        }
+
+        .hasDescription .title {
+            border-bottom: 1px solid grey;
+        }
+
     </style>
 </head>
 
@@ -25,11 +33,25 @@
 
 <body>
     <div id="app">
-        <h1 class="title has-text-centered">{{title}}</h1>
+        <h1 class="title has-text-centered" v-show="!hasDescription">{{title}}</h1>
         <section class="buttons">
-            <a v-for="obj in test" :id='obj.id' @click="doSomething" class="button is-outlined is-fullwidth is-dark">
-                {{obj.name}}
-            </a>
+            <template v-if="!hasDescription">
+                <button v-for="obj in test" :id='obj.id' @click="doSomething" class="button is-outlined is-fullwidth is-dark">
+                        {{obj.name}}
+                </button>
+            </template>
+            <template v-else>
+                <div v-for="obj in test" class="container content hasDescription">
+                    <h2 class="title">
+                        {{obj.name}}
+                    </h2>
+                    <p>
+                        {{obj.description}}
+                    </p>
+                </div>
+                
+            </template>
+            
         </section>
 
     </div>
@@ -54,7 +76,8 @@
             categories: db.categories,
             relations: db.relations,
             descriptions: db.descriptionsView,
-            count: 0
+            count: 0,
+            hasDescription: false
         },
         created: function () {
             this.test = this.categoriesView;
@@ -66,17 +89,10 @@
 
                 const count = this.count;
 
-                console.log(event.target.id);
-
                 let sub = {};
 
-                console.log(sub);
                 // pretend routes
                 if(count == 1) {
-
-                    window.test = this.subCatView;
-
-                    console.log(this.subCatView);
 
                     sub = this.subCatView.filter(function (obj) {
                         return obj.catId == event.target.id;
@@ -86,6 +102,8 @@
                     sub = this.descriptions.filter(function (obj) {
                         return obj.relationId == event.target.id;
                     });
+
+                    this.hasDescription = true;
                 }
 
                 this.test = sub;
