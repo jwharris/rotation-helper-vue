@@ -1,0 +1,15 @@
+
+/* TODO: Swap out color for is-primary in Bulma after setting up the Bulma Sass sheets */
+
+
+.hasDescription p{
+    text-indent: 1em;
+}
+
+.hasDescription .title {
+    border-bottom: 1px solid grey;
+}
+
+header {
+    margin-bottom: 1em;
+}

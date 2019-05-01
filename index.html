@@ -9,53 +9,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/bulma.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
-    <style>
-
-        .red {
-            background: red
-        }
-
-        .hasDescription p{
-            text-indent: 1em;
-        }
-
-        .hasDescription .title {
-            border-bottom: 1px solid grey;
-        }
-
-    </style>
 </head>
 
-<header class="red has-text-centered-mobile has-text-black">
-    Rotation Helper
-</header>
+<div id="app">
 
-<body>
-    <div id="app">
-        <h1 class="title has-text-centered" v-show="!hasDescription">{{title}}</h1>
-        <section class="buttons">
-            <template v-if="!hasDescription">
-                <button v-for="obj in test" :id='obj.id' @click="doSomething" class="button is-outlined is-fullwidth is-dark">
-                        {{obj.name}}
-                </button>
-            </template>
-            <template v-else>
-                <div v-for="obj in test" class="container content hasDescription">
-                    <h2 class="title">
-                        {{obj.name}}
-                    </h2>
-                    <p>
-                        {{obj.description}}
-                    </p>
-                </div>
-                
-            </template>
-            
+    <header>
+        <section class="hero is-primary">
+            <div class="hero-body  hero-body has-text-centered">
+                <h1 class="title" v-show="!hasDescription">{{title}}</h1>
+                <button class="button" v-show="false"></button>
+            </div>
+    
         </section>
+        
+    </header>
+    
+    <body>
+        <div id="app">
+            <section class="buttons">
+                <template v-if="!hasDescription">
+                    <button v-for="obj in test" :id='obj.id' @click="doSomething" class="button is-outlined is-fullwidth is-dark">
+                            {{obj.name}}
+                    </button>
+                </template>
+                <template v-else>
+                    <div v-for="obj in test" class="container content hasDescription">
+                        <h2 class="title">
+                            {{obj.name}}
+                        </h2>
+                        <p>
+                            {{obj.description}}
+                        </p>
+                    </div>
+                    
+                </template>
+                
+            </section>
+    
+        </div>
+    </body>
 
-    </div>
-</body>
+</div>
 
 </html>
 
